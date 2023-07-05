@@ -9,7 +9,7 @@
 
   async function addTask() {
     isAdding.value = true
-    await useFetch('/api/create', { method: "post", body: [{
+    await useFetch('/api/task', { method: "post", body: [{
       "title": newTask.value,
       "completed": false
     }],
@@ -64,7 +64,13 @@
     <h2>Task List</h2>
     <ul>
       <li v-for="(task, index) in tasks || []" :key="index" v-bind:key="task._uuid">
-        <span :class="task.completed ? 'completed-task': '' ">{{ task.title }}</span>
+        <div>
+          <span :class="task.completed ? 'completed-task': '' " class="title">{{ task.title }}</span>
+          <br/>
+          <span class="created">Created: {{ new Date(task._created*1000) }}</span>
+          <br/>
+          <span v-if="task.completed" class="completed">Completed: {{ new Date(task._modified*1000) }}</span>
+        </div>
         <div class="action-buttons">
           <button class="complete" @click="completeTask(task)" v-if="!task.completed">{{ isCompleting && isCompletingUuid === task._uuid ? "Completing..." : "Complete" }}</button>
           <button class="delete" @click="deleteTask(task._uuid)">{{ isDeleting && isDeletingUuid === task._uuid ? "Deleting..." : "Delete" }}</button>
@@ -159,8 +165,13 @@
         border-radius: $borderRadius;
         margin-bottom: 12px;
         span {
-          color: white;
+          color: lightsalmon;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .created, .completed {
+          color: lightslategray;
+          font-size: 12px;
         }
 
         .completed-task {
