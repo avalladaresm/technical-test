@@ -2,7 +2,7 @@ export default defineEventHandler(async () => {
   const request_config = {
     method: "get",
     headers: {
-      Authorization: `Bearer ""`
+      Authorization: `Bearer ${process.env.CRUDAPI_KEY}`
     }
   }
 

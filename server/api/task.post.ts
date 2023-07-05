@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   const request_config: RequestInit = {
     method: "post",
     headers: {
-      Authorization: `Bearer ""`
+      Authorization: `Bearer ${process.env.CRUDAPI_KEY}`
     },
     body: body
   }

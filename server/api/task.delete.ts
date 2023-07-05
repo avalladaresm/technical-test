@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   const request_config = {
     method: "delete",
     headers: {
-      Authorization: `Bearer ""`
+      Authorization: `Bearer ${process.env.CRUDAPI_KEY}`
     }
   }
 
