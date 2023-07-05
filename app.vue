@@ -1,7 +1,12 @@
 <template>
   <div>
-    <!-- Show Nuxt progress indicator on page change -->
-    <NuxtLoadingIndicator />
     <NuxtPage />
   </div>
 </template>
+
+<style>
+  html {
+    height: 100%;
+    background-color: #393D3F;
+  }
+</style>
